@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdobeXP · AEM Technical Account Validation</title>
+    <link rel="icon" type="image/png" href="/images/AdobeXPLogo/AdobeXPLogoMinified-DARK.png" />
+    <script>
+      (function () {
+        var STORAGE_KEY = "header-theme";
+        var mode = "auto";
+        try {
+          var stored = localStorage.getItem(STORAGE_KEY);
+          if (stored === "dark" || stored === "light" || stored === "auto") mode = stored;
+        } catch (e) {}
+        var effective =
+          mode === "auto"
+            ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+            : mode;
+        document.documentElement.classList.add("theme-" + effective);
+        document.documentElement.setAttribute("data-theme", effective);
+        document.documentElement.setAttribute("data-theme-mode", mode);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
